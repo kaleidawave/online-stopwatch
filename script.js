@@ -47,26 +47,31 @@ function ToggleFullscreen() {
 }
 
 function ToggleTimer() {
-    if (!running) {
-        timer = setInterval(function () {
-            seconds++;
-            if (seconds == 60) { seconds = 0; minutes++; }
-            if (minutes == 60) { minutes = 0; hours++; }
-
-            // Display the result in the element with id="demo"
-            DrawTime();
-
-        }, 1000);
-        document.getElementById("start-btn").innerText = "stop";
-    }
-    else {
-        clearInterval(timer);
-        document.getElementById("start-btn").innerText = "start";
-    }
+    if (!running) { StartTimer(); }
+    else { StopTimer(); }
     running = !running;
 }
 
+function StartTimer() {
+    timer = setInterval(function () {
+        seconds++;
+        if (seconds == 60) { seconds = 0; minutes++; }
+        if (minutes == 60) { minutes = 0; hours++; }
+
+        // Display the result in the element with id="demo"
+        DrawTime();
+
+    }, 1000);
+    document.getElementById("start-btn").innerText = "stop";
+}
+
+function StopTimer() {
+    clearInterval(timer);
+    document.getElementById("start-btn").innerText = "start";
+}
+
 function ClearTimer() {
-    hours, minutes, seconds = 0, 0, 0;
+    StopTimer();
+    hours = 0, minutes = 0, seconds = 0;
     DrawTime();
 }
