@@ -7,7 +7,7 @@ var minutes = 0;
 var seconds = 0;
 
 document.onkeydown = (e) => {
-    if (e.key === "s" || e.key === "p") { ToggleTimer(); }
+    if (e.key === "s" || e.keyCode == 32) { ToggleTimer(); }
     else if (e.key === "r") { ClearTimer(); }
     else if (e.key === "f") { ToggleFullscreen(); }
 }
@@ -58,7 +58,6 @@ function StartTimer() {
         if (seconds == 60) { seconds = 0; minutes++; }
         if (minutes == 60) { minutes = 0; hours++; }
 
-        // Display the result in the element with id="demo"
         DrawTime();
 
     }, 1000);
